@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Apiblog extends Model
 {
     use HasFactory;
+
+
+    protected $table = 'blogs';
+
+    protected $fillable = [
+    'title',
+    'content',
+    'category',
+    'tags'
+    ];
+
 }
