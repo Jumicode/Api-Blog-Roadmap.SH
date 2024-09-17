@@ -169,4 +169,60 @@ class ApiblogController extends Controller
 
         return response()->json($data, 204);
     }
+
+    public function patch(Request $request, $id)
+   {
+    $blogs = Apiblog::find($id);
+
+    if (!$blogs) {
+        $data = [
+            'message' => 'Error',
+            'status' => 404
+        ];
+        return response()->json($data, 404);
+    }
+
+    $validator = Validator::make($request->all(), [
+        'title' => 'required|max:25',
+        'content' => 'required|max:500',
+        'category' => 'required|max:15',
+        'tags' => 'required|max:100'
+    ]);
+
+    if ($validator->fails()) {
+        $data = [
+            'message' => 'Error',
+            'errors' => $validator->errors(),
+            'status' => 400
+        ];
+        return response()->json($data, 400);
+    }
+
+
+    if ($request->has('title')) {
+        $blogs->title = $request->title;
+    }
+
+    if ($request->has('content')) {
+        $blogs->content = $request->content;
+    }
+
+    if ($request->has('category')) {
+        $blogs->category = $request->category;
+    }
+
+    if ($request->has('tags')) {
+        $blogs->tags = $request->tags;
+    }
+
+    $blogs->save();
+
+    $data = [
+        'message' => 'Success',
+        'blo$blogs' => $blogs,
+        'status' => 200
+    ];
+
+    return response()->json($data, 200);
+}
 }
