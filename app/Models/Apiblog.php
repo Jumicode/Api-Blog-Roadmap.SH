@@ -19,4 +19,8 @@ class Apiblog extends Model
     'tags'
     ];
 
+    protected $casts = [
+        'tags' => 'array',
+    ];
+
 }

@@ -33,8 +33,8 @@ class ApiblogController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required|max:25',
             'content' => 'required|max:500',
-            'category' => 'required|max:15',
-            'tags' => 'required|max:100'
+            'category' => 'required|max:30',
+            'tags' => 'required|array'
         ]);
 
         if ($validator->fails()) {
@@ -49,11 +49,11 @@ class ApiblogController extends Controller
         $blogs = Apiblog::create([
             'title' => $request->title,
             'content' => $request->content,
-            'category' => $request->caterogy,
+            'category' => $request->category,
             'tags' => $request->tags
         ]);
 
-        if (!$student) {
+        if (!$blogs) {
             $data = [
                 'message' => 'Error ',
                 'status' => 400
@@ -88,7 +88,7 @@ class ApiblogController extends Controller
         }
 
         $data = [
-            'student' => $blogs,
+            'blogs' => $blogs,
             'status' => 200
         ];
 
@@ -160,7 +160,7 @@ class ApiblogController extends Controller
             return response()->json($data, 404);
         }
 
-        $student->delete();
+        $blogs->delete();
 
         $data = [
             'message' => 'Delete',
@@ -219,7 +219,7 @@ class ApiblogController extends Controller
 
     $data = [
         'message' => 'Success',
-        'blo$blogs' => $blogs,
+        '$blogs' => $blogs,
         'status' => 200
     ];
 
