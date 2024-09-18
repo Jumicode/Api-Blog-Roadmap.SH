@@ -13,7 +13,7 @@ Route::post('/blog', [ApiblogController::class, 'store']);
 
 Route::put('/blog/{id}', [ApiblogController::class,'update']);
 
-Route::patch('/blog/{id}', [ApiblogController::class,'updatePartial']);
+Route::patch('/blog/{id}', [ApiblogController::class,'update']);
 
 Route::delete('/blog/{id}', [ApiblogController::class, 'destroy']);
 

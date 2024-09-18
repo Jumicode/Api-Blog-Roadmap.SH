@@ -8,19 +8,25 @@ use Illuminate\Support\Facades\Validator;
 class ApiblogController extends Controller
 {
     
-    public function index()
-    {
-     $blogs = Apiblog::All();
+    public function index(Request $request)
+{
+    // Obtenemos el parámetro 'term' de la query string
+    $term = $request->query('term');
 
-
-     $data = [
-        'blogs' => $blogs,
-        'status' => 200
-     ];
-
-
-     return response()->json($data, 200);
+    // Si 'term' está presente, filtramos por tags
+    if ($term) {
+        $blogs = Apiblog::whereJsonContains('tags', $term)->get();
+    } else {
+        // Si no hay filtro, devolvemos todos los blogs
+        $blogs = Apiblog::all();
     }
+
+    // Respondemos con los blogs encontrados
+    return response()->json([
+        'status' => 200,
+        'blogs' => $blogs
+    ], 200);
+}
 
   
 
@@ -81,7 +87,7 @@ class ApiblogController extends Controller
 
         if (!$blogs) {
             $data = [
-                'message' => 'Error',
+                'message' => 'Data validation error',
                 'status' => 404
             ];
             return response()->json($data, 404);
@@ -106,7 +112,7 @@ class ApiblogController extends Controller
 
         if (!$blogs) {
             $data = [
-                'message' => 'Error',
+                'message' => 'Data validation error',
                 'status' => 404
             ];
             return response()->json($data, 404);
@@ -116,12 +122,12 @@ class ApiblogController extends Controller
             'title' => 'required|max:25',
             'content' => 'required|max:500',
             'category' => 'required|max:15',
-            'tags' => 'required|max:100'
+            'tags' => 'required|array'
         ]);
 
         if ($validator->fails()) {
             $data = [
-                'message' => 'Error en la validación de los datos',
+                'message' => 'Data validation error',
                 'errors' => $validator->errors(),
                 'status' => 400
             ];
@@ -137,7 +143,7 @@ class ApiblogController extends Controller
         $blogs->save();
 
         $data = [
-            'message' => 'Success',
+            'message' => 'Successfully done',
             '$blogs' => $blogs,
             'status' => 200
         ];
@@ -154,7 +160,7 @@ class ApiblogController extends Controller
 
         if (!$blogs) {
             $data = [
-                'message' => 'Error',
+                'message' => 'Data validation error',
                 'status' => 404
             ];
             return response()->json($data, 404);
@@ -163,7 +169,7 @@ class ApiblogController extends Controller
         $blogs->delete();
 
         $data = [
-            'message' => 'Delete',
+            'message' => 'Successfully done',
             'status' => 204
         ];
 
@@ -176,7 +182,7 @@ class ApiblogController extends Controller
 
     if (!$blogs) {
         $data = [
-            'message' => 'Error',
+            'message' => 'Data validation error',
             'status' => 404
         ];
         return response()->json($data, 404);
@@ -186,7 +192,7 @@ class ApiblogController extends Controller
         'title' => 'required|max:25',
         'content' => 'required|max:500',
         'category' => 'required|max:15',
-        'tags' => 'required|max:100'
+        'tags' => 'required|array'
     ]);
 
     if ($validator->fails()) {
@@ -218,7 +224,7 @@ class ApiblogController extends Controller
     $blogs->save();
 
     $data = [
-        'message' => 'Success',
+        'message' => 'Successfully done',
         '$blogs' => $blogs,
         'status' => 200
     ];
