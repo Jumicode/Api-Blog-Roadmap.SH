@@ -65,4 +65,4 @@ Get all blog posts using the GET method
 While retrieving posts, user can also filter posts by a search term. You should do a wildcard search on the title, content or category fields of the blog posts. 
 ![image](https://github.com/user-attachments/assets/175d8ba1-439b-4567-b29d-6fbbf6f1e0e0)
 
-
+Solution: https://roadmap.sh/projects/blogging-platform-api 
