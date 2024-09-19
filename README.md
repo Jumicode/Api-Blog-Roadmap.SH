@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Goals
+The goals of this project are to help you:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Understand what the RESTful APIs are including best practices and conventions
+Learn how to create a RESTful API
+Learn about common HTTP methods like GET, POST, PUT, PATCH, DELETE
+Learn about status codes and error handling in APIs
+Learn how to perform CRUD operations using an API
+Learn how to work with databases
 
-## About Laravel
+## Requirements
+You should create a RESTful API for a personal blogging platform. The API should allow users to perform the following operations:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Create a new blog post
+Update an existing blog post
+Delete an existing blog post
+Get a single blog post
+Get all blog posts
+Filter blog posts by a search term
+Given below are the details for each API operation.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Create Blog Post
+Create a new blog post using the POST method
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+![image](https://github.com/user-attachments/assets/978c53bd-cbe5-4168-aabe-fd6a476362a0)
 
-## Learning Laravel
+The endpoint should validate the request body and return a 201 Created status code with the newly created blog post i.e.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+or a 400 Bad Request status code with error messages in case of validation errors.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![image](https://github.com/user-attachments/assets/f8f96c44-d367-47d9-855d-c731b6c8de3d)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Update Blog Post
+Update an existing blog post using the PUT method
+![image](https://github.com/user-attachments/assets/51b38bb7-2c3b-4eea-98f2-8935fbeb10d8)
 
-## Laravel Sponsors
+The endpoint should validate the request body and return a 200 OK status code with the updated blog post i.e.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+or a 400 Bad Request status code with error messages in case of validation errors. It should return a 404 Not Found status code if the blog post was not found.
 
-### Premium Partners
+![image](https://github.com/user-attachments/assets/7f4d922d-f262-40cf-a051-f9e04787f861)
+![image](https://github.com/user-attachments/assets/24dd90f6-5b78-4946-a365-35a13628cf53)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+## Delete Blog Post
+Delete an existing blog post using the DELETE method
 
-## Contributing
+![image](https://github.com/user-attachments/assets/4c7ef618-740e-4175-80da-afee34858e2b)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The endpoint should return a 204 No Content status code if the blog post was successfully deleted or a 404 Not Found status code if the blog post was not found.
 
-## Code of Conduct
+![image](https://github.com/user-attachments/assets/e3fa7365-161d-44ee-ade0-465b78b213e3)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Get Blog Post
+Get a single blog post using the GET method
 
-## Security Vulnerabilities
+![image](https://github.com/user-attachments/assets/1a902e0a-2605-439a-b1ce-3cb6311709b3)
+The endpoint should return a 200 OK status code with the blog post i.e.
+![image](https://github.com/user-attachments/assets/18304a94-500a-4a4d-9a4b-70e272b5ab83)
+or a 404 Not Found status code if the blog post was not found.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Get All Blog Posts
+Get all blog posts using the GET method
+![image](https://github.com/user-attachments/assets/39d1c507-8a9e-4da5-9b5c-0ab3a741105f)
 
-## License
+While retrieving posts, user can also filter posts by a search term. You should do a wildcard search on the title, content or category fields of the blog posts. 
+![image](https://github.com/user-attachments/assets/175d8ba1-439b-4567-b29d-6fbbf6f1e0e0)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
